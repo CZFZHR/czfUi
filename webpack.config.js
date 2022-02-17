@@ -1,6 +1,6 @@
 const path = require('path');
 const NODE_ENV = process.env.NODE_ENV; // 获取环境变量
-const isProd = NODE_ENV === 'production';
+const isProd = NODE_ENV !== 'production';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // 每次构建清除上一次打包出来的文件
 const nodeExternals = require('webpack-node-externals');
@@ -10,6 +10,9 @@ const plugins = isProd ? [new CleanWebpackPlugin()] : [
     template: 'public/index.html'
   }),
 ]
+
+
+console.log('isProd', isProd, NODE_ENV);
 
 module.exports = {
   mode: isProd ? 'production' : 'development',
